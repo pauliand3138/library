@@ -15,12 +15,14 @@ body {
     flex-direction: column;
     align-items: center;
     width: 20%;
+    min-width: 300px; 
     background-color: #0E67B4;  
     height: 100vh; 
 }
 
 .library-logo {
     width: 20vw;
+    min-width: 250px;
     padding-top: 1em;
     padding-bottom: 1em;
 }
@@ -28,9 +30,17 @@ body {
 form {
     display: flex;
     flex-direction: column;
-    gap: 0.5em;
+    gap: 0.8em;
 }
+
 .form-group {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    gap: 0.2em;
+}
+
+.input-group {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -45,7 +55,7 @@ form {
     outline: none;
     border: 5px solid #5F9AEC;
     font-family: 'Montserrat';
-    width: 100%;
+    width: 96%;
 }
 
 .input-textbox:focus, .input-dropdown:focus {
@@ -56,9 +66,95 @@ form {
     width: 30px;
 }
 
+.error-message {
+    color: white;
+    font-size: 0.9em;
+}
+
 select{
   color:#757575;
 }
+
 option:not(first-child) {
   color: #000;
+}
+
+.submit-button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+    font-family: 'Montserrat';
+    color: white;
+    cursor: pointer;
+    background-color: #001647;
+    padding: 0.5em;
+    border: 3px solid black;
+    border-radius: 10px;
+    transition: 0.2s transform ease-in;
+    font-weight: bold;
+}
+
+.submit-button:hover {
+    transform: scale(1.05);
+    border-color: white;
+}
+
+.loader {
+    display: none;
+    margin-top: 1em;
+    height: 40px;
+    transform-origin: bottom center;
+    animation: rotate 1.5s linear infinite;
+    transition: 1.5s opacity ease-out;
+}
+
+.circle {
+    display: inline-block;
+    background-color: #00DBDA;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    transform: scale(0);
+    animation: grow 1.5s linear infinite;
+    margin: -5px;
+}
+
+.circle:nth-child(2) {
+    background-color: #7AFAC4;
+    animation-delay: 0.5s;
+}
+
+
+@keyframes rotate {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes grow {
+    50% {
+        transform: scale(1);
+    }
+}
+
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
 }

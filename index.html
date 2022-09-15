@@ -8,33 +8,58 @@
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
     <link rel="stylesheet" href="styles.css">
-
+    <script src="https://kit.fontawesome.com/63f59926de.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <aside class="side-form">
         <img src="images/Paul's Library-logos_transparent.png" alt="paul's library logo" class="library-logo">
         <form action="" class="add-book-form">
             <div class="form-group">
-                <img src="images/order-alphabetical-ascending.png" alt="book title logo" class="input-icon">
-                <input name="book-title" class="input-textbox" type="text" placeholder="Book Title">
+                <div class="input-group">
+                    <img src="images/order-alphabetical-ascending.png" alt="book title logo" class="input-icon">
+                    <input id="input-bookTitle" name="book-title" class="input-textbox" type="text" placeholder="Book Title">
+                </div>
+                <span class="error-message" id="book-title-error"></span> 
+            </div>
+
+            <div class="form-group">
+                <div class="input-group">
+                    <img src="images/account-edit.png" alt="author logo" class="input-icon">
+                    <input id="input-bookAuthor" name="book-author" class="input-textbox" type="text" placeholder="Author">
+                </div>
+                <span class="error-message" id="book-author-error"></span>
             </div>
             <div class="form-group">
-                <img src="images/account-edit.png" alt="author logo" class="input-icon">
-                <input name="book-author" class="input-textbox" type="text" placeholder="Author">
+                <div class="input-group">
+                    <img src="images/book-open-page-variant.png" alt="book pages logo" class="input-icon">
+                    <input id="input-bookPages" name="book-pages" class="input-textbox" type="number" placeholder="Number of Pages" min="1">
+                </div>
+                <span class="error-message" id="book-pages-error"></span>
             </div>
             <div class="form-group">
-                <img src="images/book-open-page-variant.png" alt="book pages logo" class="input-icon">
-                <input name="book-pages" class="input-textbox" type="number" placeholder="Number of Pages">
+                <div class="input-group">
+                    <img src="images/read.png" alt="reading progress logo" class="input-icon">
+                    <select name="book-hasRead" class="input-dropdown" id="input-dropdown">
+                        <option value="" disabled selected>Reading Progress</option>
+                        <option value="completed">Completed</option>
+                        <option value="not-yet">Not yet</option>
+                    </select>
+                </div>
+                <span class="error-message" id="reading-progress-error"></span>
             </div>
-            <div class="form-group">
-                <img src="images/read.png" alt="reading progress logo" class="input-icon">
-                <select name="book-hasRead" class="input-dropdown">
-                    <option value="" disabled selected>Reading Progress</option>
-                    <option value="completed">Completed</option>
-                    <option value="not-yet">Not yet</option>
-                </select>
+              
+
+            <div class="btn submit-button" id="submit-button">
+                <span style="color: white"><i class="fa-solid fa-file-circle-plus"></i></span>
+                <p>Add Book</p>
             </div>
         </form>
+
+        <div class="loader" id="loader">
+            <div class="circle"></div>
+            <div class="circle"></div>
+        </div>
+
     </aside>
     <main class="main-content">
 
