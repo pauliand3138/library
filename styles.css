@@ -6,7 +6,7 @@
 
 body {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     font-family: 'Montserrat', sans-serif;
     background-color: #E6F4F1;
 }
@@ -15,15 +15,16 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 20%;
-    min-width: 300px; 
+    width: 20vw;
+    min-width: 300px;
+    max-width: 350px; 
     background-color: #0E67B4;  
     height: 100vh; 
 }
 
 .library-logo {
     width: 20vw;
-    min-width: 250px;
+    max-width: 300px;
     padding-top: 1em;
     padding-bottom: 1em;
 }
@@ -127,7 +128,48 @@ option:not(first-child) {
     animation-delay: 0.5s;
 }
 
+ .main-content {
+    display: flex;
+    flex-direction: column; 
+    width: 100%;
 
+}
+
+.content-table {
+    border-collapse: collapse;
+    font-size: 1.1em;
+    min-width: 400px;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    margin: auto 3vw;
+}
+
+.content-table thead tr {
+    background-color: #003E77;
+    color: white;
+    text-align: left;
+}
+
+.content-table th, .content-table td {
+    padding: 12px 18px;
+}
+
+.content-table tbody tr{
+    border-bottom: 1px solid #dddddd;
+}
+
+.content-table tbody tr:nth-of-type(odd) {
+    background-color: #ffffff;
+}
+
+.content-table tbody tr:nth-of-type(even) {
+    background-color: #F3FAFF;
+}
+
+.content-table tbody tr:last-of-type {
+    border-bottom: 2px solid #003E77;
+}
 @keyframes rotate {
     to {
         transform: rotate(360deg);
