@@ -29,7 +29,6 @@ inputDropdown.onchange = (e) => {
         inputDropdown.style.color = "#000";
 }
 
-// Form Validation
 let submitButton = document.getElementById("submit-button");
 let inputBookTitle = document.getElementById("input-bookTitle");
 let inputBookAuthor = document.getElementById("input-bookAuthor");
@@ -40,6 +39,23 @@ let bookPagesError = document.getElementById("book-pages-error");
 let readingProgressError = document.getElementById("reading-progress-error");
 let loader = document.getElementById("loader");
 
+
+inputBookTitle.oninput = function() {checkOnChange(inputBookTitle);}
+inputBookAuthor.oninput = function() {checkOnChange(inputBookAuthor);}
+inputBookPages.oninput = function() {checkOnChange(inputBookPages);}
+inputDropdown.oninput = function() {checkOnChange(inputDropdown);}
+
+//Form interaction when onchange
+function checkOnChange(htmlElement) {
+    console.log(htmlElement);
+    if (htmlElement["value"] == "" || (htmlElement["type"] == "number" && htmlElement["value"] < 0)) {
+        htmlElement.style.borderColor = "red";
+    } else {
+        htmlElement.style.borderColor = "#04AA6D";
+    }
+}
+
+// Form Validation when submit
 submitButton.onclick = (e) => {
     if (inputBookTitle["value"] == "") {
         bookTitleError.innerText = "*Book title must not be empty!";
