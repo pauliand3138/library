@@ -39,6 +39,12 @@ let bookPagesError = document.getElementById("book-pages-error");
 let readingProgressError = document.getElementById("reading-progress-error");
 let loader = document.getElementById("loader");
 
+const inputErrorMap = new Map([
+    [inputBookTitle, bookTitleError],
+    [inputBookAuthor, bookAuthorError],
+    [inputBookPages, bookPagesError],
+    [inputDropdown, readingProgressError]
+]);
 
 inputBookTitle.oninput = function() {checkOnChange(inputBookTitle);}
 inputBookAuthor.oninput = function() {checkOnChange(inputBookAuthor);}
@@ -50,8 +56,10 @@ function checkOnChange(htmlElement) {
     console.log(htmlElement);
     if (htmlElement["value"] == "" || (htmlElement["type"] == "number" && htmlElement["value"] < 1)) {
         htmlElement.style.borderColor = "red";
+        
     } else {
         htmlElement.style.borderColor = "#04AA6D";
+        inputErrorMap.get(htmlElement).innerText = "";
     }
 }
 
