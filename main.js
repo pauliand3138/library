@@ -1,4 +1,4 @@
-let myLibrary = [];
+const myLibrary = [];
 
 function Book(title, author, pages, hasRead) {
     this.title = title;
@@ -20,7 +20,7 @@ function delay(ms) {
 }
 
 // Input dropdown color styles
-let inputDropdown = document.getElementById("input-dropdown");
+const inputDropdown = document.getElementById("input-dropdown");
 
 inputDropdown.onchange = (e) => {
     if (e.target.value == "")
@@ -29,15 +29,20 @@ inputDropdown.onchange = (e) => {
         inputDropdown.style.color = "#000";
 }
 
-let submitButton = document.getElementById("submit-button");
-let inputBookTitle = document.getElementById("input-bookTitle");
-let inputBookAuthor = document.getElementById("input-bookAuthor");
-let inputBookPages = document.getElementById("input-bookPages");
-let bookTitleError = document.getElementById("book-title-error");
-let bookAuthorError = document.getElementById("book-author-error");
-let bookPagesError = document.getElementById("book-pages-error");
-let readingProgressError = document.getElementById("reading-progress-error");
-let loader = document.getElementById("loader");
+const submitButton = document.getElementById("submit-button");
+const inputBookTitle = document.getElementById("input-bookTitle");
+const inputBookAuthor = document.getElementById("input-bookAuthor");
+const inputBookPages = document.getElementById("input-bookPages");
+const bookTitleError = document.getElementById("book-title-error");
+const bookAuthorError = document.getElementById("book-author-error");
+const bookPagesError = document.getElementById("book-pages-error");
+const readingProgressError = document.getElementById("reading-progress-error");
+const loader = document.getElementById("loader");
+
+const BOOK_TITLE_ERROR_MESSAGE = "*Book title must not be empty!";
+const BOOK_AUTHOR_ERROR_MESSAGE = "*Book author must not be empty!";
+const BOOK_PAGES_ERROR_MESSAGE = "*Book pages must be larger than 0!";
+const READING_PROGRESS_ERROR_MESSAGE = "*Reading progress must not be empty!";
 
 const inputErrorMap = new Map([
     [inputBookTitle, bookTitleError],
@@ -53,21 +58,20 @@ inputDropdown.oninput = function() {checkOnChange(inputDropdown);}
 
 //Form interaction when onchange
 function checkOnChange(htmlElement) {
-    console.log(htmlElement);
     if (htmlElement["value"] == "" || (htmlElement["type"] == "number" && htmlElement["value"] < 1)) {
         htmlElement.style.borderColor = "red";
         switch(inputErrorMap.get(htmlElement)) {
             case bookTitleError:
-                bookTitleError.innerText = "*Book title must not be empty!";
+                bookTitleError.innerText = BOOK_TITLE_ERROR_MESSAGE;
                 break;
             case bookAuthorError:
-                bookAuthorError.innerText = "*Book author must not be empty!";
+                bookAuthorError.innerText = BOOK_AUTHOR_ERROR_MESSAGE;
                 break;
             case bookPagesError:
-                bookPagesError.innerText = "*Book pages must be larger than 0!";
+                bookPagesError.innerText = BOOK_PAGES_ERROR_MESSAGE;
                 break;
             case readingProgressError:
-                readingProgressError.innerText = "*Reading progress must not be empty!";
+                readingProgressError.innerText = READING_PROGRESS_ERROR_MESSAGE;
                 break;
         }
     } else {
@@ -78,40 +82,29 @@ function checkOnChange(htmlElement) {
 
 // Form Validation when submit
 submitButton.onclick = (e) => {
-    if (inputBookTitle["value"] == "") {
-        bookTitleError.innerText = "*Book title must not be empty";
-        inputBookTitle.style.borderColor = "red";
-        inputBookTitle.style.animation = "shake 0.82s";
-        setTimeout(function(){
-            inputBookTitle.style.animation = "none";
-        }, 900);
-    }
+    for (const [key, value] of inputErrorMap) {
+        if (key["value"] == "" || (key == inputBookPages && key["value"] < 1)) {
+            switch(inputErrorMap.get(key)) {
+            case bookTitleError:
+                value.innerText = BOOK_TITLE_ERROR_MESSAGE;
+                break;
+            case bookAuthorError:
+                value.innerText = BOOK_AUTHOR_ERROR_MESSAGE;
+                break;
+            case bookPagesError:
+                value.innerText = BOOK_PAGES_ERROR_MESSAGE;
+                break;
+            case readingProgressError:
+                value.innerText = READING_PROGRESS_ERROR_MESSAGE;
+                break;
+            }
 
-    if (inputBookAuthor["value"] == "") {
-        bookAuthorError.innerText = "*Book author must not be empty!";
-        inputBookAuthor.style.borderColor = "red";
-        inputBookAuthor.style.animation = "shake 0.82s";
-        setTimeout(function(){
-            inputBookAuthor.style.animation = "none";
-        }, 900);
-    }
-
-    if (inputBookPages["value"] == "" || inputBookPages["value"] < 1) {
-        bookPagesError.innerText = "*Book pages must be larger than 0!";
-        inputBookPages.style.borderColor = "red";
-        inputBookPages.style.animation = "shake 0.82s";
-        setTimeout(function(){
-            inputBookPages.style.animation = "none";
-        }, 900);
-    }
-
-    if (inputDropdown["value"] == "") {
-        readingProgressError.innerText = "*Reading progress must not be empty!";
-        inputDropdown.style.borderColor = "red";
-        inputDropdown.style.animation = "shake 0.82s";
-        setTimeout(function(){
-            inputDropdown.style.animation = "none";
-        }, 900);
+            key.style.borderColor = "red";
+            key.style.animation = "shake 0.82s";
+            setTimeout(function(){
+                key.style.animation = "none";
+            }, 900);
+        }
     }
  
     if(inputBookTitle["value"] && inputBookPages["value"] && inputDropdown["value"] && inputBookAuthor["value"]) {
