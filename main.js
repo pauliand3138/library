@@ -58,7 +58,7 @@ function checkOnChange(htmlElement) {
         htmlElement.style.borderColor = "red";
         switch(inputErrorMap.get(htmlElement)) {
             case bookTitleError:
-                bookTitleError.innerText = "*Book title must not be empty";
+                bookTitleError.innerText = "*Book title must not be empty!";
                 break;
             case bookAuthorError:
                 bookAuthorError.innerText = "*Book author must not be empty!";
