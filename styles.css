@@ -170,6 +170,7 @@ option:not(first-child) {
 .content-table tbody tr:last-of-type {
     border-bottom: 2px solid #003E77;
 }
+
 @keyframes rotate {
     to {
         transform: rotate(360deg);

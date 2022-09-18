@@ -48,7 +48,7 @@ inputDropdown.oninput = function() {checkOnChange(inputDropdown);}
 //Form interaction when onchange
 function checkOnChange(htmlElement) {
     console.log(htmlElement);
-    if (htmlElement["value"] == "" || (htmlElement["type"] == "number" && htmlElement["value"] < 0)) {
+    if (htmlElement["value"] == "" || (htmlElement["type"] == "number" && htmlElement["value"] < 1)) {
         htmlElement.style.borderColor = "red";
     } else {
         htmlElement.style.borderColor = "#04AA6D";
