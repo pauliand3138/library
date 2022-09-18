@@ -56,7 +56,20 @@ function checkOnChange(htmlElement) {
     console.log(htmlElement);
     if (htmlElement["value"] == "" || (htmlElement["type"] == "number" && htmlElement["value"] < 1)) {
         htmlElement.style.borderColor = "red";
-        
+        switch(inputErrorMap.get(htmlElement)) {
+            case bookTitleError:
+                bookTitleError.innerText = "*Book title must not be empty";
+                break;
+            case bookAuthorError:
+                bookAuthorError.innerText = "*Book author must not be empty!";
+                break;
+            case bookPagesError:
+                bookPagesError.innerText = "*Book pages must be larger than 0!";
+                break;
+            case readingProgressError:
+                readingProgressError.innerText = "*Reading progress must not be empty!";
+                break;
+        }
     } else {
         htmlElement.style.borderColor = "#04AA6D";
         inputErrorMap.get(htmlElement).innerText = "";
@@ -66,15 +79,12 @@ function checkOnChange(htmlElement) {
 // Form Validation when submit
 submitButton.onclick = (e) => {
     if (inputBookTitle["value"] == "") {
-        bookTitleError.innerText = "*Book title must not be empty!";
+        bookTitleError.innerText = "*Book title must not be empty";
         inputBookTitle.style.borderColor = "red";
         inputBookTitle.style.animation = "shake 0.82s";
         setTimeout(function(){
             inputBookTitle.style.animation = "none";
         }, 900);
-    } else {
-        bookTitleError.innerText = "";
-        inputBookTitle.style.borderColor = "#04AA6D";
     }
 
     if (inputBookAuthor["value"] == "") {
@@ -84,9 +94,6 @@ submitButton.onclick = (e) => {
         setTimeout(function(){
             inputBookAuthor.style.animation = "none";
         }, 900);
-    } else {
-        bookAuthorError.innerText = "";
-        inputBookAuthor.style.borderColor = "#04AA6D";
     }
 
     if (inputBookPages["value"] == "" || inputBookPages["value"] < 1) {
@@ -96,9 +103,6 @@ submitButton.onclick = (e) => {
         setTimeout(function(){
             inputBookPages.style.animation = "none";
         }, 900);
-    } else {
-        bookPagesError.innerText = "";
-        inputBookPages.style.borderColor = "#04AA6D";
     }
 
     if (inputDropdown["value"] == "") {
@@ -108,9 +112,6 @@ submitButton.onclick = (e) => {
         setTimeout(function(){
             inputDropdown.style.animation = "none";
         }, 900);
-    } else {
-        readingProgressError.innerText = "";
-        inputDropdown.style.borderColor = "#04AA6D";
     }
  
     if(inputBookTitle["value"] && inputBookPages["value"] && inputDropdown["value"] && inputBookAuthor["value"]) {
