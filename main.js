@@ -1,3 +1,4 @@
+// @ts-nocheck
 const myLibrary = [];
 
 function Book(title, author, pages, hasRead) {
@@ -113,9 +114,31 @@ submitButton.onclick = (e) => {
             loader.style.opacity="0";
             delay(1500).then(() => { 
                 loader.style.display="none";
-                loader.style.opacity="100"; 
+                loader.style.opacity="100";
             });
+            const newBook = new Book(inputBookTitle["value"], inputBookAuthor["value"], inputBookPages["value"], inputDropdown["value"])
+            addBookToLibrary(newBook);
+            addNewBookToTable(newBook);
         });
-        console.log("Hello");
+        
     }
 }
+
+function addNewBookToTable(newBook) {
+    const table = document.getElementById("content-table");
+    const row = table.insertRow(-1);
+    const numberCell = row.insertCell(0)
+    const titleCell = row.insertCell(1);
+    const authorCell = row.insertCell(2);
+    const pagesCell = row.insertCell(3);
+    const readingProgressCell = row.insertCell(4);
+    const actionCell = row.insertCell(5);
+
+    numberCell.innerText = myLibrary.length < 10 ? "0" + myLibrary.length : myLibrary.length; 
+    titleCell.innerText = newBook.title;
+    authorCell.innerText = newBook.author;
+    pagesCell.innerText = newBook.pages;
+    readingProgressCell.innerText = newBook.hasRead;
+    actionCell.innerHTML = `<a href="">Delete</a>`;
+}
+
