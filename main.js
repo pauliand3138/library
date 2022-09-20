@@ -123,6 +123,7 @@ submitButton.onclick = (e) => {
         
     }
 }
+const readingProgressButtons = document.getElementsByClassName("reading-progress-button");
 
 function addNewBookToTable(newBook) {
     const table = document.getElementById("content-table");
@@ -138,7 +139,19 @@ function addNewBookToTable(newBook) {
     titleCell.innerText = newBook.title;
     authorCell.innerText = newBook.author;
     pagesCell.innerText = newBook.pages;
-    readingProgressCell.innerText = newBook.hasRead;
+    readingProgressCell.innerHTML = `<div class="reading-progress-div" style="color:${newBook.hasRead == "Completed" ? 'green' : 'red'};" onclick=readingProgressClick(this)>${newBook.hasRead}</div>`;
+    console.log(readingProgressButtons);
     actionCell.innerHTML = `<a href="">Delete</a>`;
 }
 
+
+function readingProgressClick(e) {
+    if (e.innerText == "Completed") {
+        e.innerText = "Not yet";
+        e.style.color = "red";
+    } else {
+        e.innerText = "Completed";
+        e.style.color = "green";
+    }
+    
+}

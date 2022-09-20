@@ -171,6 +171,13 @@ option:not(first-child) {
     border-bottom: 2px solid #003E77;
 }
 
+.reading-progress-div {
+    margin: 0;
+    padding: 0; 
+    cursor: pointer; 
+    font-weight: bold;
+}
+
 @keyframes rotate {
     to {
         transform: rotate(360deg);
