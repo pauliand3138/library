@@ -118,34 +118,33 @@ submitButton.onclick = (e) => {
             });
             const newBook = new Book(inputBookTitle["value"], inputBookAuthor["value"], inputBookPages["value"], inputDropdown["value"])
             addBookToLibrary(newBook);
-            addNewBookToTable(newBook);
+            // addNewBookToTable(newBook);
+            displayAllBooks();
         });
         
     }
 }
-const readingProgressButtons = document.getElementsByClassName("reading-progress-button");
 
-function addNewBookToTable(newBook) {
-    const table = document.getElementById("table-row");
-    const row = table.insertRow(-1);
-    const numberCell = row.insertCell(0)
-    const titleCell = row.insertCell(1);
-    const authorCell = row.insertCell(2);
-    const pagesCell = row.insertCell(3);
-    const readingProgressCell = row.insertCell(4);
-    const actionCell = row.insertCell(5);
+// function addNewBookToTable(newBook) {
+//     const table = document.getElementById("table-row");
+//     const row = table.insertRow(-1);
+//     const numberCell = row.insertCell(0)
+//     const titleCell = row.insertCell(1);
+//     const authorCell = row.insertCell(2);
+//     const pagesCell = row.insertCell(3);
+//     const readingProgressCell = row.insertCell(4);
+//     const actionCell = row.insertCell(5);
 
-    numberCell.innerText = myLibrary.length < 10 ? "0" + myLibrary.length : myLibrary.length; 
-    titleCell.innerText = newBook.title;
-    authorCell.innerText = newBook.author;
-    pagesCell.innerText = newBook.pages;
-    readingProgressCell.innerHTML = `<div class="reading-progress-div" style="color:${newBook.hasRead == "Completed" ? 'green' : 'red'};" onclick=readingProgressClick(this)>${newBook.hasRead}</div>`;
-    console.log(readingProgressButtons);
-    actionCell.innerHTML = `<a id="${myLibrary.length}" onclick=deleteButtonClick(this)>Delete</a>`;
-}
+//     numberCell.innerText = myLibrary.length < 10 ? "0" + myLibrary.length : myLibrary.length; 
+//     titleCell.innerText = newBook.title;
+//     authorCell.innerText = newBook.author;
+//     pagesCell.innerText = newBook.pages;
+//     readingProgressCell.innerHTML = `<div class="reading-progress-div" style="color:${newBook.hasRead == "Completed" ? 'green' : 'red'};" onclick=changeReadingProgress(this)>${newBook.hasRead}</div>`;
+//     actionCell.innerHTML = `<a class="delete-btn" onclick=deleteBook(this)>Delete</a>`;
+// }
 
 
-function readingProgressClick(e) {
+function changeReadingProgress(e) {
     if (e.innerText == "Completed") {
         e.innerText = "Not yet";
         e.style.color = "red";
@@ -156,10 +155,31 @@ function readingProgressClick(e) {
     
 }
 
-function deleteButtonClick(e) {
-    const table = document.getElementById("content-table");
-    console.log(e.id);
-    myLibrary.splice(e.id);
-    console.log(myLibrary);
-    table.deleteRow(parseInt(e.id) - 1);
+function deleteBook(e) {
+    const tr = e.parentNode.parentNode.rowIndex - 1;
+    myLibrary.splice(tr, 1);
+    displayAllBooks();
 }
+
+
+function displayAllBooks() {
+    const bookRowInTable = document.getElementById("table-row");
+    bookRowInTable.textContent = ""
+    for(let i = 0; i < myLibrary.length; i++) {
+        const row = bookRowInTable.insertRow(-1);
+        const numberCell = row.insertCell(0)
+        const titleCell  = row.insertCell(1);
+        const authorCell = row.insertCell(2);
+        const pagesCell  = row.insertCell(3);
+        const readingProgressCell = row.insertCell(4);
+        const actionCell = row.insertCell(5); 
+
+        numberCell.innerText = (i + 1) < 10 ? "0" + parseInt(i + 1) : parseInt(i + 1); 
+        titleCell.innerText = myLibrary[i].title;
+        authorCell.innerText = myLibrary[i].author;
+        pagesCell.innerText = myLibrary[i].pages;
+        readingProgressCell.innerHTML = `<div class="reading-progress-div" style="color:${myLibrary[i].hasRead == "Completed" ? 'green' : 'red'};" onclick=changeReadingProgress(this)>${myLibrary[i].hasRead}</div>`;
+        actionCell.innerHTML = `<a class="delete-btn" onclick=deleteBook(this)>Delete</a>`;
+    }
+}
+
