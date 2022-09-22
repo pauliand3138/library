@@ -118,41 +118,20 @@ submitButton.onclick = (e) => {
             });
             const newBook = new Book(inputBookTitle["value"], inputBookAuthor["value"], inputBookPages["value"], inputDropdown["value"])
             addBookToLibrary(newBook);
-            // addNewBookToTable(newBook);
             displayAllBooks();
         });
         
     }
 }
 
-// function addNewBookToTable(newBook) {
-//     const table = document.getElementById("table-row");
-//     const row = table.insertRow(-1);
-//     const numberCell = row.insertCell(0)
-//     const titleCell = row.insertCell(1);
-//     const authorCell = row.insertCell(2);
-//     const pagesCell = row.insertCell(3);
-//     const readingProgressCell = row.insertCell(4);
-//     const actionCell = row.insertCell(5);
-
-//     numberCell.innerText = myLibrary.length < 10 ? "0" + myLibrary.length : myLibrary.length; 
-//     titleCell.innerText = newBook.title;
-//     authorCell.innerText = newBook.author;
-//     pagesCell.innerText = newBook.pages;
-//     readingProgressCell.innerHTML = `<div class="reading-progress-div" style="color:${newBook.hasRead == "Completed" ? 'green' : 'red'};" onclick=changeReadingProgress(this)>${newBook.hasRead}</div>`;
-//     actionCell.innerHTML = `<a class="delete-btn" onclick=deleteBook(this)>Delete</a>`;
-// }
-
-
 function changeReadingProgress(e) {
+    const index = e.parentNode.parentNode.rowIndex - 1;
     if (e.innerText == "Completed") {
-        e.innerText = "Not yet";
-        e.style.color = "red";
+        myLibrary[index].hasRead = "Not yet";
     } else {
-        e.innerText = "Completed";
-        e.style.color = "green";
+        myLibrary[index].hasRead = "Completed";
     }
-    
+    displayAllBooks();
 }
 
 function deleteBook(e) {
@@ -179,7 +158,7 @@ function displayAllBooks() {
         authorCell.innerText = myLibrary[i].author;
         pagesCell.innerText = myLibrary[i].pages;
         readingProgressCell.innerHTML = `<div class="reading-progress-div" style="color:${myLibrary[i].hasRead == "Completed" ? 'green' : 'red'};" onclick=changeReadingProgress(this)>${myLibrary[i].hasRead}</div>`;
-        actionCell.innerHTML = `<a class="delete-btn" onclick=deleteBook(this)>Delete</a>`;
+        actionCell.innerHTML = `<a href="" class="delete-btn" onclick=deleteBook(this)>Delete</a>`;
     }
 }
 
