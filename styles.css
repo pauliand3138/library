@@ -178,6 +178,13 @@ option:not(first-child) {
     font-weight: bold;
 }
 
+.delete-btn {
+    display: flex;
+    gap: 5px;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 @keyframes rotate {
     to {
         transform: rotate(360deg);

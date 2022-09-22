@@ -11,6 +11,7 @@ function Book(title, author, pages, hasRead) {
     }
 }
 
+
 function addBookToLibrary(book) {
     myLibrary.push(book);
 }
@@ -118,10 +119,23 @@ submitButton.onclick = (e) => {
             });
             const newBook = new Book(inputBookTitle["value"], inputBookAuthor["value"], inputBookPages["value"], inputDropdown["value"])
             addBookToLibrary(newBook);
+            resetForm();
             displayAllBooks();
         });
         
     }
+}
+
+function resetForm() {
+    const form = document.querySelector(".add-book-form");
+    const input = document.querySelectorAll("input");
+    for(let i = 0; i < input.length; i++) {
+        input[i].style.borderColor = "#5F9AEC";
+    }
+    const select = document.querySelector("select");
+    select.style.borderColor = "#5F9AEC";
+    select.style.color = "#757575";
+    form.reset();    
 }
 
 function changeReadingProgress(e) {
@@ -137,6 +151,7 @@ function changeReadingProgress(e) {
 function deleteBook(e) {
     const tr = e.parentNode.parentNode.rowIndex - 1;
     myLibrary.splice(tr, 1);
+    console.log(myLibrary);
     displayAllBooks();
 }
 
@@ -158,7 +173,8 @@ function displayAllBooks() {
         authorCell.innerText = myLibrary[i].author;
         pagesCell.innerText = myLibrary[i].pages;
         readingProgressCell.innerHTML = `<div class="reading-progress-div" style="color:${myLibrary[i].hasRead == "Completed" ? 'green' : 'red'};" onclick=changeReadingProgress(this)>${myLibrary[i].hasRead}</div>`;
-        actionCell.innerHTML = `<a href="" class="delete-btn" onclick=deleteBook(this)>Delete</a>`;
+        actionCell.innerHTML = `<a class="delete-btn" onclick=deleteBook(this)><span style="color: #003E77"><i class="fa-solid fa-trash-can"></span></i>Delete</a>`;
     }
 }
 
+displayAllBooks();
