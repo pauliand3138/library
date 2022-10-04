@@ -155,6 +155,25 @@ function deleteBook(e) {
     displayAllBooks();
 }
 
+function updateLibraryStats() {
+    const totalBooksCount = document.querySelector("#total-books");
+    const booksCompletedCount = document.querySelector("#books-completed");
+    const booksIncompleteCount = document.querySelector("#books-incomplete");
+
+    let completedCount = 0;
+    let incompleteCount = 0;
+    for(let i = 0; i < myLibrary.length; i++) {
+        if (myLibrary[i].hasRead == "Completed") {
+            completedCount++;
+        } else {
+            incompleteCount++;
+        } 
+    }
+
+    totalBooksCount.innerText = myLibrary.length;
+    booksCompletedCount.innerText = completedCount;
+    booksIncompleteCount.innerText = incompleteCount;
+}
 
 function displayAllBooks() {
     const bookRowInTable = document.getElementById("table-row");
@@ -175,6 +194,7 @@ function displayAllBooks() {
         readingProgressCell.innerHTML = `<div class="reading-progress-div" style="color:${myLibrary[i].hasRead == "Completed" ? 'green' : 'red'};" onclick=changeReadingProgress(this)>${myLibrary[i].hasRead}</div>`;
         actionCell.innerHTML = `<a class="delete-btn" onclick=deleteBook(this)><span style="color: #003E77"><i class="fa-solid fa-trash-can"></span></i>Delete</a>`;
     }
+    updateLibraryStats();
 }
 
 displayAllBooks();
