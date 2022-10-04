@@ -81,7 +81,7 @@ option:not(first-child) {
   color: #000;
 }
 
-.submit-button {
+.submit-button, .stat-delete-button {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -128,12 +128,39 @@ option:not(first-child) {
     animation-delay: 0.5s;
 }
 
- .main-content {
+/* Main Content */
+
+.main-content {
     display: flex;
     flex-direction: column; 
     width: 100%;
+    margin: 0 3vw;
 
 }
+
+.library-stats {
+    display: flex;
+    margin: 3vh 0;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.stat {
+    display: flex;
+    font-size: 1.2em;
+    gap: 0.5em;
+}
+
+.stat-delete-button{
+    background-color: #FE0000;
+    border: none;
+    padding: 0.8em;   
+}
+
+.stat-delete-button:hover{
+    transform: scale(1.05);
+}
+
 
 .content-table {
     border-collapse: collapse;
@@ -142,7 +169,7 @@ option:not(first-child) {
     border-radius: 5px 5px 0 0;
     overflow: hidden;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-    margin: auto 3vw;
+
 }
 
 .content-table thead tr {
