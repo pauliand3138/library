@@ -152,7 +152,7 @@ option:not(first-child) {
 }
 
 .stat-delete-button{
-    background-color: #FE0000;
+    background-color: #CC0000;
     border: none;
     padding: 0.8em;   
 }
