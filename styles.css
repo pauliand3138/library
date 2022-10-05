@@ -12,6 +12,7 @@ body {
 }
 
 .modal-container {
+    background-color: rgba(0, 0, 0, 0.3);
     position: fixed;
     top: 0;
     left: 0;
@@ -20,6 +21,9 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease-in-out;
 }
 
 .modal {
@@ -31,6 +35,8 @@ body {
     padding: 50px 50px;
     border-radius: 15px;
     border: 15px solid #003E77;
+    max-width: 100%;
+    z-index: 2;
 }
 
 .modal-title {
@@ -64,6 +70,11 @@ body {
 
 .no {
     background-color: #CF0501;
+}
+
+.modal-container.show {
+    opacity: 1;
+    pointer-events: auto;
 }
 
 .side-form {

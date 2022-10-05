@@ -40,6 +40,7 @@ const bookAuthorError = document.getElementById("book-author-error");
 const bookPagesError = document.getElementById("book-pages-error");
 const readingProgressError = document.getElementById("reading-progress-error");
 const loader = document.getElementById("loader");
+const deleteAllButton = document.getElementById("stat-delete-button");
 
 const BOOK_TITLE_ERROR_MESSAGE = "*Book title must not be empty!";
 const BOOK_AUTHOR_ERROR_MESSAGE = "*Book author must not be empty!";
@@ -125,6 +126,25 @@ submitButton.onclick = (e) => {
         
     }
 }
+
+//Delete all button onclick event
+deleteAllButton.onclick = (e) => {
+    const modalContainer = document.querySelector(".modal-container");
+
+    modalContainer.classList.add('show');
+    
+    modalContainer.onclick = (e) => {
+        const { target } = e;
+        if (target.classList.contains('close-modal')) {
+            modalContainer.classList.remove("show");
+        } else if (target.classList.contains('yes')) {
+            console.log('Hello');
+            myLibrary.splice(0, myLibrary.length);
+            modalContainer.classList.remove("show");
+        }
+    }
+};
+
 
 function resetForm() {
     const form = document.querySelector(".add-book-form");
