@@ -11,6 +11,61 @@ body {
     background-color: #E6F4F1;
 }
 
+.modal-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    align-items: center;
+    background-color: white;
+    padding: 50px 50px;
+    border-radius: 15px;
+    border: 15px solid #003E77;
+}
+
+.modal-title {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.modal-description {
+    font-size: 1.3em;
+}
+
+.modal-button-group {
+    display: flex;
+    gap: 2em;
+}
+
+.modal-button {
+    padding: 15px 45px;
+    border: none;
+    border-radius: 5px;
+    box-shadow:0 0 10px rgba(0, 0, 0, 0.15);
+    font-size: 1.1em;
+    font-family: 'Montserrat';
+    color: white;
+    cursor: pointer;
+}
+
+.yes {
+    background-color: #00A552;
+}
+
+.no {
+    background-color: #CF0501;
+}
+
 .side-form {
     display: flex;
     flex-direction: column;
