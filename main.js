@@ -141,6 +141,7 @@ deleteAllButton.onclick = (e) => {
             console.log('Hello');
             myLibrary.splice(0, myLibrary.length);
             modalContainer.classList.remove("show");
+            displayAllBooks();
         }
     }
 };
