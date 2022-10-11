@@ -303,6 +303,49 @@ option:not(first-child) {
     border-color: white;
 }
 
+/* Tooltip */
+.tooltip {
+  position: relative;
+  display: inline-block;
+  color: white;
+  margin: 0 auto;
+  font-size: 25px;
+}
+
+.tooltip .tooltip-message {
+  font-family: 'Montserrat', sans-serif;
+  opacity: 0%;
+  width: 250px;
+  background-color: #E1F1FF;
+  color: #003E77;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  font-size: 14px !important;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  top: 150%;
+  margin-left: -135px;
+  transition: 0.5s opacity ease-in-out;
+}
+
+.tooltip:hover .tooltip-message {
+  opacity: 100%;
+}
+
+.tooltip .tooltip-message::after {
+    content: " ";
+    position: absolute;
+    bottom: 100%;  /* At the top of the tooltip */
+    left: 50%;
+    margin-left: -8px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent #E1F1FF transparent;
+}
+
 .loader {
     display: none;
     margin-top: 1em;
