@@ -144,8 +144,8 @@ body {
     bottom: 0;
     left: 0;
     height: 3px;
-    width: 100;
-    background-color: #ddd;
+    width: 100%;
+    background: #ddd;
 }
 
 .toast .progress:before{
