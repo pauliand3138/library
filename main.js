@@ -122,11 +122,11 @@ submitButton.onclick = (e) => {
             addBookToLibrary(newBook);
             resetForm();
             displayAllBooks();
-            showSuccessToast();
+            showToast("form-success");
         });
         
     } else {
-        showWarningToast();
+        showToast("form-warning");
     }
 }
 
@@ -150,7 +150,7 @@ deleteAllButton.onclick = (e) => {
             }
         }
     } else {
-        showErrorToast();
+        showToast("reset-error");
     }
 };
 
@@ -204,77 +204,41 @@ function updateLibraryStats() {
     booksIncompleteCount.innerText = incompleteCount;
 }
 
-function showSuccessToast() {
-    const successToast = document.querySelector("#success-toast");
-    const successToastClose = document.querySelector("#success-toast .close");
-    const successToastProgress = document.querySelector("#success-toast .progress");
+function showToast(toastType) {
+    let toast;
+    let toastClose;
+    let toastProgress;
 
-    successToast.classList.add("toast-active");
-    successToastProgress.classList.add("toast-active");
+    if (toastType == "form-success") {
+        toast = document.querySelector("#success-toast");
+        toastClose = document.querySelector("#success-toast .close");
+        toastProgress = document.querySelector("#success-toast .progress");
+    } else if (toastType == "reset-error") {
+        toast = document.querySelector("#error-toast");
+        toastClose = document.querySelector("#error-toast .close");
+        toastProgress = document.querySelector("#error-toast .progress");
+    } else if (toastType == "form-warning") {
+        toast = document.querySelector("#warning-toast");
+        toastClose = document.querySelector("#warning-toast .close");
+        toastProgress = document.querySelector("#warning-toast .progress");
+    }
+    
+    toast.classList.add("toast-active");
+    toastProgress.classList.add("toast-active");
 
     setTimeout(() => {
-        successToast.classList.remove("toast-active");
+        toast.classList.remove("toast-active");
     }, 2000);
 
     setTimeout(() => {
-        successToastProgress.classList.remove("toast-active");
+        toastProgress.classList.remove("toast-active");
     }, 2300);
 
-    successToastClose.addEventListener("click", () => {
-        successToast.classList.remove("toast-active");
+    toastClose.addEventListener("click", () => {
+        toast.classList.remove("toast-active");
 
         setTimeout(() => {
-            successToastProgress.classList.remove("toast-active");
-        }, 300);
-    });
-}
-
-function showWarningToast() {
-    const warningToast = document.querySelector("#warning-toast");
-    const warningToastClose = document.querySelector("#warning-toast .close");
-    const warningToastProgress = document.querySelector("#warning-toast .progress");
-
-    warningToast.classList.add("toast-active");
-    warningToastProgress.classList.add("toast-active");
-
-    setTimeout(() => {
-        warningToast.classList.remove("toast-active");
-    }, 2000);
-
-    setTimeout(() => {
-        warningToastProgress.classList.remove("toast-active");
-    }, 2300);
-
-    warningToastClose.addEventListener("click", () => {
-        warningToast.classList.remove("toast-active");
-
-        setTimeout(() => {
-            warningToastProgress.classList.remove("toast-active");
-        }, 300);
-    });
-}
-
-function showErrorToast() {
-    const errorToast = document.querySelector("#error-toast");
-    const errorToastClose = document.querySelector("#error-toast .close");
-    const errorToastProgress = document.querySelector("#error-toast .progress");
-
-    errorToast.classList.add("toast-active");
-    errorToastProgress.classList.add("toast-active");
-
-    setTimeout(() => {
-        errorToast.classList.remove("toast-active");
-    }, 2000);
-
-    setTimeout(() => {
-        errorToastProgress.classList.remove("toast-active");
-    }, 2300);
-
-    errorToastClose.addEventListener("click", () => {
-        errorToast.classList.remove("toast-active");
-
-        setTimeout(() => {
-            errorToastProgress.classList.remove("toast-active");
+            toastProgress.classList.remove("toast-active");
         }, 300);
     });
 }
