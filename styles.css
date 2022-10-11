@@ -9,7 +9,7 @@ body {
     flex-direction: row;
     font-family: 'Montserrat', sans-serif;
     background-color: #E6F4F1;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 /* Modal Styles */
@@ -89,7 +89,7 @@ body {
     padding: 20px 35px 20px 25px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);  
     overflow: hidden;
-    transform: translateX(calc(100% + 35px));
+    transform: translateX(calc(100% + 40px));
     transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.35);
     z-index: 1; /* Prevent "Reset Library" button from overlapping the toast message */
 }
@@ -211,6 +211,7 @@ body {
 
 /* Body Styles */
 .side-form {
+    position: fixed;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -333,8 +334,9 @@ option:not(first-child) {
     display: flex;
     flex-direction: column; 
     width: 100%;
-    margin: 0 3vw;
-
+    margin-bottom: 1vw;
+    margin-left: 23vw;
+    margin-right: 3vw;
 }
 
 .library-stats {
@@ -368,7 +370,6 @@ option:not(first-child) {
     border-radius: 5px 5px 0 0;
     overflow: hidden;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-
 }
 
 .content-table thead tr {
