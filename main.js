@@ -147,6 +147,7 @@ deleteAllButton.onclick = (e) => {
                 myLibrary.splice(0, myLibrary.length);
                 modalContainer.classList.remove("show");
                 displayAllBooks();
+                showToast("reset-success");
             }
         }
     } else {
@@ -181,6 +182,7 @@ function deleteBook(e) {
     const tr = e.parentNode.parentNode.rowIndex - 1;
     myLibrary.splice(tr, 1);
     console.log(myLibrary);
+    showToast("delete-item-success");
     displayAllBooks();
 }
 
@@ -208,11 +210,20 @@ function showToast(toastType) {
     let toast;
     let toastClose;
     let toastProgress;
+    let toastMessage;
 
-    if (toastType == "form-success") {
+    if (toastType == "form-success" || toastType == "delete-item-success" || toastType == "reset-success") {
         toast = document.querySelector("#success-toast");
         toastClose = document.querySelector("#success-toast .close");
         toastProgress = document.querySelector("#success-toast .progress");
+        toastMessage = document.querySelector("#success-toast .text-2");
+        if (toastType == "form-success") {
+            toastMessage.innerText = "New record has been added !";
+        } else if (toastType == "delete-item-success") {
+            toastMessage.innerText = "Record has been deleted!";
+        } else if (toastType == "reset-success") {
+            toastMessage.innerText = "Library has been reset successfully!";
+        }
     } else if (toastType == "reset-error") {
         toast = document.querySelector("#error-toast");
         toastClose = document.querySelector("#error-toast .close");
@@ -221,8 +232,8 @@ function showToast(toastType) {
         toast = document.querySelector("#warning-toast");
         toastClose = document.querySelector("#warning-toast .close");
         toastProgress = document.querySelector("#warning-toast .progress");
-    }
-    
+    }    
+
     toast.classList.add("toast-active");
     toastProgress.classList.add("toast-active");
 
