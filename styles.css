@@ -215,9 +215,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 20vw;
-    min-width: 300px;
-    max-width: 350px; 
+    width: 350px; 
     background-color: #0E67B4;  
     height: 100vh; 
 }
@@ -378,7 +376,7 @@ option:not(first-child) {
     flex-direction: column; 
     width: 100%;
     margin-bottom: 1vw;
-    margin-left: 23vw;
+    margin-left: calc(350px + 3vw);
     margin-right: 3vw;
 }
 
@@ -499,9 +497,11 @@ option:not(first-child) {
     align-items: center;
     gap: 0.5em;
     position: fixed;
-    left: 2.5em;
+    left: 0;
     bottom: .5em;
     z-index: 2;
+    width: 350px;
+    margin: 0 2em;
 }
 
 .copyright-text {
