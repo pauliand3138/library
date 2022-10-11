@@ -122,6 +122,7 @@ submitButton.onclick = (e) => {
             addBookToLibrary(newBook);
             resetForm();
             displayAllBooks();
+            showSuccessToast();
         });
         
     }
@@ -194,6 +195,31 @@ function updateLibraryStats() {
     totalBooksCount.innerText = myLibrary.length;
     booksCompletedCount.innerText = completedCount;
     booksIncompleteCount.innerText = incompleteCount;
+}
+
+function showSuccessToast() {
+    const successToast = document.querySelector("#success-toast");
+    const successToastClose = document.querySelector("#success-toast .close");
+    const successToastProgress = document.querySelector("#success-toast .progress");
+
+    successToast.classList.add("toast-active");
+    successToastProgress.classList.add("toast-active");
+
+    setTimeout(() => {
+        successToast.classList.remove("toast-active");
+    }, 2000);
+
+    setTimeout(() => {
+        successToastProgress.classList.remove("toast-active");
+    }, 2300);
+
+    successToastClose.addEventListener("click", () => {
+        successToast.classList.remove("toast-active");
+
+        setTimeout(() => {
+            successToastProgress.classList.remove("toast-active");
+        }, 300);
+    });
 }
 
 function displayAllBooks() {
