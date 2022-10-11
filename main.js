@@ -1,5 +1,5 @@
 // @ts-nocheck
-const myLibrary = [];
+let myLibrary = [];
 
 function Book(title, author, pages, hasRead) {
     this.title = title;
@@ -120,6 +120,7 @@ submitButton.onclick = (e) => {
             });
             const newBook = new Book(inputBookTitle["value"], inputBookAuthor["value"], inputBookPages["value"], inputDropdown["value"])
             addBookToLibrary(newBook);
+            localStorage.setItem('library-data', JSON.stringify(myLibrary));
             resetForm();
             displayAllBooks();
             showToast("form-success");
@@ -145,6 +146,7 @@ deleteAllButton.onclick = (e) => {
             } else if (target.classList.contains('yes')) {
                 console.log('Hello');
                 myLibrary.splice(0, myLibrary.length);
+                localStorage.setItem('library-data', JSON.stringify(myLibrary));
                 modalContainer.classList.remove("show");
                 displayAllBooks();
                 showToast("reset-success");
@@ -175,14 +177,16 @@ function changeReadingProgress(e) {
     } else {
         myLibrary[index].hasRead = "Completed";
     }
+    localStorage.setItem('library-data', JSON.stringify(myLibrary));
     displayAllBooks();
 }
 
 function deleteBook(e) {
     const tr = e.parentNode.parentNode.rowIndex - 1;
     myLibrary.splice(tr, 1);
-    console.log(myLibrary);
+    //console.log(myLibrary);
     showToast("delete-item-success");
+    localStorage.setItem('library-data', JSON.stringify(myLibrary));
     displayAllBooks();
 }
 
@@ -276,4 +280,17 @@ function displayAllBooks() {
     updateLibraryStats();
 }
 
+function getLocalStorageBooks() {
+    if (localStorage.getItem("library-data") == null) {
+        localStorage.setItem("library-data", '[]');
+    }
+
+    var existing_data = JSON.parse(localStorage.getItem('library-data'));
+
+    myLibrary = existing_data;
+
+    localStorage.setItem('library-data', JSON.stringify(myLibrary));
+}
+
+getLocalStorageBooks();
 displayAllBooks();
