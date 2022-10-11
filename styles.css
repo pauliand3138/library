@@ -448,3 +448,46 @@ option:not(first-child) {
     transform: translate3d(4px, 0, 0);
   }
 }
+
+  /* Footer Styles */
+  .copyright {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5em;
+    position: fixed;
+    left: 2.5em;
+    bottom: .5em;
+    z-index: 2;
+}
+
+.copyright-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1em;
+    text-align: center;
+    color: white;
+}
+
+.copyright a {
+    text-decoration: none;
+    color:  white;
+}
+
+.author-name {
+    text-decoration: underline 0.1em rgba(87, 110, 224, 0);
+    transition: text-decoration-color 300ms;
+}
+
+.author-name:hover {
+    text-decoration-color: white;
+}
+
+.github-icon {
+    width: 2vw;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+
+.github-icon:hover {
+    transform: rotate(360deg) scale(1.1);
+}
