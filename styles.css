@@ -381,8 +381,13 @@ option:not(first-child) {
     padding: 12px 18px;
 }
 
+.content-table td {
+    padding: 20px 18px;
+}
+
 .content-table tbody tr{
     border-bottom: 1px solid #dddddd;
+    padding-top: 15px;
 }
 
 .content-table tbody tr:nth-of-type(odd) {
