@@ -87,11 +87,23 @@ body {
     border-radius: 12px;
     background-color: white;
     padding: 20px 35px 20px 25px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-    border-left: 6px solid #4CA355;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);  
     overflow: hidden;
     transform: translateX(calc(100% + 35px));
     transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.35);
+    z-index: 1; /* Prevent "Reset Library" button from overlapping the toast message */
+}
+
+#success-toast {
+    border-left: 6px solid #4CA355;
+}
+
+#warning-toast {
+    border-left: 6px solid #FF9700;
+}
+
+#error-toast {
+    border-left: 6px solid #E14D45;
 }
 
 .toast.toast-active{
@@ -108,11 +120,22 @@ body {
     align-items: center;
     justify-content: center;;
     height: 35px;
-    width: 35px;
-    background-color: #4CA355;
+    width: 35px; 
     color: white;
     font-size: 20px;
     border-radius: 50%;
+}
+
+#success-toast .toast-content .check{
+    background-color: #4CA355;
+}
+
+#warning-toast .toast-content .check{
+    background-color: #FF9700;
+}
+
+#error-toast .toast-content .check{
+    background-color: #E14D45;
 }
 
 .toast-content .message {
@@ -162,7 +185,18 @@ body {
     right: 0;
     height: 100%;
     width: 100%;
+}
+
+#success-toast .progress:before{
     background-color: #4CA355;
+}
+
+#warning-toast .progress:before{
+    background-color: #FF9700;
+}
+
+#error-toast .progress:before{
+    background-color: #E14D45;
 }
 
 .progress.toast-active:before{

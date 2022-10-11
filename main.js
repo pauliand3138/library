@@ -125,25 +125,32 @@ submitButton.onclick = (e) => {
             showSuccessToast();
         });
         
+    } else {
+        showWarningToast();
     }
 }
 
 //Delete all button onclick event
 deleteAllButton.onclick = (e) => {
-    const modalContainer = document.querySelector(".modal-container");
 
-    modalContainer.classList.add('show');
-    
-    modalContainer.onclick = (e) => {
-        const { target } = e;
-        if (target.classList.contains('close-modal')) {
-            modalContainer.classList.remove("show");
-        } else if (target.classList.contains('yes')) {
-            console.log('Hello');
-            myLibrary.splice(0, myLibrary.length);
-            modalContainer.classList.remove("show");
-            displayAllBooks();
+    if (myLibrary.length > 0) {
+        const modalContainer = document.querySelector(".modal-container");
+
+        modalContainer.classList.add('show');
+        
+        modalContainer.onclick = (e) => {
+            const { target } = e;
+            if (target.classList.contains('close-modal')) {
+                modalContainer.classList.remove("show");
+            } else if (target.classList.contains('yes')) {
+                console.log('Hello');
+                myLibrary.splice(0, myLibrary.length);
+                modalContainer.classList.remove("show");
+                displayAllBooks();
+            }
         }
+    } else {
+        showErrorToast();
     }
 };
 
@@ -218,6 +225,56 @@ function showSuccessToast() {
 
         setTimeout(() => {
             successToastProgress.classList.remove("toast-active");
+        }, 300);
+    });
+}
+
+function showWarningToast() {
+    const warningToast = document.querySelector("#warning-toast");
+    const warningToastClose = document.querySelector("#warning-toast .close");
+    const warningToastProgress = document.querySelector("#warning-toast .progress");
+
+    warningToast.classList.add("toast-active");
+    warningToastProgress.classList.add("toast-active");
+
+    setTimeout(() => {
+        warningToast.classList.remove("toast-active");
+    }, 2000);
+
+    setTimeout(() => {
+        warningToastProgress.classList.remove("toast-active");
+    }, 2300);
+
+    warningToastClose.addEventListener("click", () => {
+        warningToast.classList.remove("toast-active");
+
+        setTimeout(() => {
+            warningToastProgress.classList.remove("toast-active");
+        }, 300);
+    });
+}
+
+function showErrorToast() {
+    const errorToast = document.querySelector("#error-toast");
+    const errorToastClose = document.querySelector("#error-toast .close");
+    const errorToastProgress = document.querySelector("#error-toast .progress");
+
+    errorToast.classList.add("toast-active");
+    errorToastProgress.classList.add("toast-active");
+
+    setTimeout(() => {
+        errorToast.classList.remove("toast-active");
+    }, 2000);
+
+    setTimeout(() => {
+        errorToastProgress.classList.remove("toast-active");
+    }, 2300);
+
+    errorToastClose.addEventListener("click", () => {
+        errorToast.classList.remove("toast-active");
+
+        setTimeout(() => {
+            errorToastProgress.classList.remove("toast-active");
         }, 300);
     });
 }
